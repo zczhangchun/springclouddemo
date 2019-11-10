@@ -1,0 +1,4 @@
+com/zhangchun/springcloud/model/Dept.class
+com/zhangchun/springcloud/client/DeptClient.class
+com/zhangchun/springcloud/com/zhangchun/springcloud/client/DeptClientFallbackFactory.class
+com/zhangchun/springcloud/com/zhangchun/springcloud/client/DeptClientFallbackFactory$1.class

@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: microservicecloud-consumer
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://localhost:7001/eureka #就算是eureka集群也只需要配置一个eureka即可，因为eureka之间会通信互相订阅信息
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 10

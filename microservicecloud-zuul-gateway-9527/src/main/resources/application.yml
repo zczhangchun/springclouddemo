@@ -1,0 +1,24 @@
+server:
+  port: 9527
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:${server.port}
+    prefer-ip-address: true
+info:
+  app.name: microservice
+  company.name: www.zhangchun.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+spring:
+  application:
+    name: microservicecloud-zuul-gateway
+zuul:
+  routes:
+    mydept:
+      serviceId: microservicespringcloud-dept
+      path: /mydept/**
+  ignored-services: "*"
+  prefix: /zhangchun

@@ -1,0 +1,37 @@
+server:
+  port: 8001
+mybatis:
+  config-locations: classpath:mybatis/mybatis.cfg.xml #mybatis配置文件所在路径
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml #mapper映射文件
+  type-aliases-package: com.zhangchun.springcloud.model
+
+spring:
+  application:
+    name: microservicespringcloud-dept
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource # 当前数据源操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver  # mysql驱动包
+    username: root
+    password: zc123123
+    url: jdbc:mysql://localhost:3306/clouddb01
+    dbcp2:
+      min-idle: 5 #数据库连接池的最小空闲连接数
+      initial-size: 5 #初始化连接数
+      max-total: 5 #最大连接数
+      max-wait-millis: 200 #等待连接获取的最大超时时长
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://localhost:7001/eureka #就算是eureka集群也只需要配置一个eureka即可，因为eureka之间会通信互相订阅信息
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 5
+    lease-renewal-interval-in-seconds: 10
+
+info:
+  app.name: microservice
+  company.name: www.zhangchun.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
